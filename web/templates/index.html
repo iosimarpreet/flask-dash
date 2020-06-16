@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+  {% block title %}Home{% endblock %}
+
+{% block content %}
+    <div>
+        <h2><strong>DogBook</strong></h2>
+        <br>
+        <input class="input" type="text" placeholder="Enter a Dog's Name" name="" id="dog_name"/>
+        <br>
+        <br>
+        <button id="go_dog" class="button">See Dog Profile</button>
+    </div>
+    <br>
+    <div>
+        <h2><strong>CatBook</strong></h2>
+        <br>
+        <input class="input" type="text" placeholder="Enter a Cat's Name" name="" id="cat_name"/>
+        <br>
+        <br>
+        <button id="go_cat" class="button">See Cat Profile</button>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div>
+        <h2><strong>Analytics @ PetApp</strong></h2>
+        <br>
+        <h3><code>DogViz</code> is a brand new dog analytics app. We're using Machine Learning to classify your Dog as Cat or Dog.</h3>
+        <br>
+        <button class="button"><a href="/dogs/dog_viz/">Go to DogViz</a></button>
+        <br>
+        <br>
+        <h3><code>CatViz</code> is a brand new cat analytics app. We're using state-of-the art deep neural nets to answer the big questions, like:</h3>
+        <br>
+        <p style="text-align: center"><em>Is this cat a cat or a dog?</em></p>
+        <button class="button"><a href="/cats/cat_viz/">Go to CatViz</a></button>
+    </div>
+
+
+<script>
+    function goToDog() {
+        const base_url = "/dogs?name=";
+        const dog_name = document.getElementById("dog_name").value;
+        window.location = base_url + dog_name
+    }
+    document.getElementById("go_dog").addEventListener("click", goToDog);
+
+    function goToCat() {
+        const base_url = "/cats?name=";
+        const cat_name = document.getElementById("cat_name").value;
+        window.location = base_url + cat_name
+    }
+    document.getElementById("go_cat").addEventListener("click", goToCat);
+
+</script>
+
+{% endblock %}
