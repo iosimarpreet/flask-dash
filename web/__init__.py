@@ -4,8 +4,11 @@ from web.modules.cat.views import cat_app
 import dash
 from web.dash_apps.dog_viz import layout as dog_viz_layout
 from web.dash_apps.cat_viz import layout as cat_viz_layout
+import logging
 
 server = Flask(__name__)
+
+logging.basicConfig(filename='web.log', level=logging.DEBUG)
 
 # Register your Modules (Apps) here
 
@@ -26,10 +29,12 @@ cat_viz.layout = cat_viz_layout
 
 @server.route('/')
 def index():
+    server.logger.info("Index Route Visited")
     return render_template('index.html')
 
 
 @server.errorhandler(404)
 def page_not_found(e):
     # note that we set the 404 status explicitly
+    server.logger.info("404 error")
     return render_template('404.html'), 404
